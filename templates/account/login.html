@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+
+        <a href="{% provider_login_url 'google' %}" class="btn btn-google">Login with Google</a>
+        <a href="{% provider_login_url 'facebook' %}" class="btn btn-facebook">Login with Facebook</a>
+
+        <div class="divider">OR</div>
+
+        <form method="post" action="{% url 'account_login' %}" class="login-form">
+            {% csrf_token %}
+            {{ form.email.label_tag }}<br>
+            {{ form.email }}<br>
+            {{ form.password.label_tag }}<br>
+            {{ form.password }}<br>
+
+            <input type="submit" value="Login">
+        </form>
+
+        <p style="text-align:center; margin-top:10px;">
+            <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
+        </p>
+
+    </div>
+
+</body>
+</html>
